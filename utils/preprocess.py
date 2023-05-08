@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 
-def preprocess_image(image_path):
+async def preprocess_image(image_path):
     # Resize
     org_image = Image.open(image_path)
     image = org_image
