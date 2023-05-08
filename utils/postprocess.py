@@ -13,6 +13,7 @@ async def save_image(image_name, image, boxes, labels, scores, score_threshold=0
     _, ax = plt.subplots(1, figsize=(12,9))
     image = array(image)
     ax.imshow(image)
+    ax.axis('off')
 
     # Showing boxes with score > 0.7
     for box, label, score in zip(boxes, labels, scores):
@@ -22,3 +23,4 @@ async def save_image(image_name, image, boxes, labels, scores, score_threshold=0
             ax.add_patch(rect)
     # tight to remove spaces around the image
     plt.savefig(image_name, bbox_inches='tight')
+    
