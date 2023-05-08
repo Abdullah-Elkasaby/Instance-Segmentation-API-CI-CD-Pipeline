@@ -23,7 +23,7 @@ async def run_inference(image_path):
 
 
 
-@app.post("/upload")
+@app.post("/image")
 async def create_upload_file(img: UploadFile = File(...)):
     try:
         org_img, boxes, labels, scores = await run_inference(img.file)
