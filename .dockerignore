@@ -1,0 +1,8 @@
+__pycache__/
+.git
+*.md
+*/*.jpg*
+*/*.png*
+*/*.jpeg*
+Dockerfile
+main.py

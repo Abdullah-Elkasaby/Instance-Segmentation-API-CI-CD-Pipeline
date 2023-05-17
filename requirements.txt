@@ -1,7 +1,6 @@
 Pillow
 numpy
 matplotlib
-onnx
 onnxruntime
 fastapi
 uvicorn[standard]

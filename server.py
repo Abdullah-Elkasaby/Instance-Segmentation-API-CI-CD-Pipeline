@@ -1,8 +1,8 @@
 # FASTAPI Imports
 from fastapi import FastAPI, UploadFile,File, HTTPException
-from fastapi.responses import FileResponse, Response, StreamingResponse
-import json
-import uvicorn
+from fastapi.responses import Response
+# import json
+# import uvicorn
 from uuid import uuid4
 
 # Model Imports
@@ -42,5 +42,5 @@ async def create_upload_file(img: UploadFile = File(...)):
 
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, port=8000, host="0.0.0.0", reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run(app, port=80, host="0.0.0.0", reload=True)

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from numpy import array, round 
 from io import BytesIO
-from base64 import b64encode
+
 
 
 classes = [line.rstrip('\n') for line in open("dependencies/classes.txt")]
