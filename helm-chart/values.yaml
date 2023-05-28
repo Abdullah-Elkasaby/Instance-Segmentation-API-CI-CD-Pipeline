@@ -1,0 +1,32 @@
+#common-values for all envs
+app: 
+  name: fast-api
+
+container:
+  port: 80
+
+image:
+  repository: abdullahelkasaby
+  name: fast-api
+  tag: v1
+
+service: 
+  name: fast-api-service
+  port: 80
+  targetPort: 80
+  nodePort: 30100
+  type: NodePort
+
+# test-env-values
+testEnv: 
+  envName: test
+  replicasCount: 1
+
+# prod-env-values 
+preprodEnv: 
+  envName: preprod
+  replicasCount: 3
+
+
+
+    
