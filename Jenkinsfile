@@ -8,7 +8,7 @@ pipeline {
                        sh """
                             docker login -u ${USERNAME} -p ${PASSWORD}
                             docker build -t abdullahelkasaby/fast-api:v${BUILD_NUMBER} .
-                            docker push abdullahelkasaby/fast-api:${BUILD_NUMBER}
+                            docker push abdullahelkasaby/fast-api:v${BUILD_NUMBER}
                        """
                    }
                 }
@@ -17,14 +17,17 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                  withCredentials([file(credentialsId: 'kube-config-id', variable: 'KUBECONFIG')]) {
-                      sh """
-                          mv Deployment/api-deploy.yaml Deployment/api-deploy.yaml.tmp
-                          cat Deployment/api-deploy.yaml.tmp | envsubst > Deployment/api-deploy.yaml
-                          rm -f Deployment/api-deploy.yaml.tmp
-                          kubectl apply -f Deployment -n jenkins --kubeconfig ${KUBECONFIG}
-                        """
-                  }
+                      withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                            sh '''
+                                export release_exists=`helm list --short | grep model`
+                                if [ -z $release_exists ]
+                                then 
+                                    helm install model-api helm-chart/ --set image.tag=v${BUILD_NUMBER}
+                                else
+                                    helm upgrade model-api helm-chart/ --set image.tag=v${BUILD_NUMBER}
+                                fi
+                            '''
+                        }
                 }
             }
         }
