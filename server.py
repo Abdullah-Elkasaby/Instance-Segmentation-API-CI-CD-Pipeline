@@ -1,9 +1,7 @@
 # FASTAPI Imports
 from fastapi import FastAPI, UploadFile,File, HTTPException
-from fastapi.responses import Response
-# import json
-# import uvicorn
-from uuid import uuid4
+from fastapi.responses import Response, HTMLResponse
+
 
 # Model Imports
 from utils.preprocess import preprocess_image
@@ -23,7 +21,7 @@ async def run_inference(image_path):
 
 
 
-@app.post("/image")
+@app.post("/upload")
 async def create_upload_file(img: UploadFile = File(...)):
     try:
         org_img, boxes, labels, scores = await run_inference(img.file)
@@ -31,16 +29,19 @@ async def create_upload_file(img: UploadFile = File(...)):
     except:
         raise HTTPException(status_code=500, detail="Internal Server Error [Bad Inference]")
 
-    # imag_ext = img.filename.split('.')[1]
-    # rand_image_name = f"{uuid4()}.{imag_ext}"
     image = await save_image(org_img, boxes, labels, scores)
 
-    # return FileResponse(rand_image_name)
     return Response(content=image.getvalue(), media_type="image/png")
 
 
 
 
+@app.get("/")
+async def index():
+    html_file_path = "index.html"
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, port=80, host="0.0.0.0", reload=True)
+    with open(html_file_path, "r") as file:
+        contents = file.read()
+
+    return HTMLResponse(content=contents, status_code=200)
+
