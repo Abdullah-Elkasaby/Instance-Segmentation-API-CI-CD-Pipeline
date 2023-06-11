@@ -5,5 +5,6 @@ __pycache__/
 */*.png*
 */*.jpeg*
 Dockerfile
-Jenkinsfile
 main.py
+.vscode/
+venv/

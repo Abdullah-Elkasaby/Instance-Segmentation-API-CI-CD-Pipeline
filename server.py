@@ -7,10 +7,19 @@ from fastapi.responses import Response, HTMLResponse
 from utils.preprocess import preprocess_image
 from utils.postprocess import save_image
 from onnxruntime import InferenceSession
+import functools
+
+
 
 app = FastAPI()
 MODEL_PATH = "models/FasterRCNN-12-qdq.onnx"
-session = InferenceSession(MODEL_PATH)
+
+
+@functools.lru_cache(maxsize=1)
+def load_model():
+    return InferenceSession(MODEL_PATH)
+
+session = load_model()
 
 
 async def run_inference(image_path):
@@ -31,7 +40,7 @@ async def create_upload_file(img: UploadFile = File(...)):
 
     image = await save_image(org_img, boxes, labels, scores)
 
-    return Response(content=image.getvalue(), media_type="image/png")
+    return Response(content=image, media_type="image/png")
 
 
 
@@ -44,4 +53,5 @@ async def index():
         contents = file.read()
 
     return HTMLResponse(content=contents, status_code=200)
+
 
