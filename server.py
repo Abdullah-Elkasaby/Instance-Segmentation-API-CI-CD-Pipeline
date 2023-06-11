@@ -31,12 +31,12 @@ async def create_upload_file(img: UploadFile = File(...)):
 
     image = await save_image(org_img, boxes, labels, scores)
 
-    return Response(content=image.getvalue(), media_type="image/png")
+    return Response(content=image, media_type="image/png")
 
 
 
 
-@app.get("/home")
+@app.get("/")
 async def index():
     html_file_path = "index.html"
 
@@ -44,4 +44,5 @@ async def index():
         contents = file.read()
 
     return HTMLResponse(content=contents, status_code=200)
+
 
