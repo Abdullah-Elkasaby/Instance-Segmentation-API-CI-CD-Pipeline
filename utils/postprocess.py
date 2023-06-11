@@ -30,7 +30,10 @@ async def save_image(image, boxes, labels, scores, score_threshold=0.7):
 
     # Save the plot to the BytesIO stream
     plt.savefig(buffer, bbox_inches='tight', format='png')
+    plt.clf()
     buffer.seek(0)
-    return buffer
+    result = buffer.getvalue()
+    buffer.close()
+    return result
 
     
