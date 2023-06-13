@@ -1,4 +1,4 @@
 apiVersion: v1
-kind: fast-api
+kind: Namespace
 metadata:
-  name: jenkins
+  name: fast-api
