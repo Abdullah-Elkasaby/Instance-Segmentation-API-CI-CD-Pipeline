@@ -24,7 +24,8 @@ pipeline {
                                 mv deployments/api-deploy.yaml deployments/api-deploy.yaml.tmp
                                 cat deployments/api-deploy.yaml.tmp | envsubst > deployments/api-deploy.yaml
                                 rm -rf deployments/deploy.yaml.tmp
-                                kubectl apply -f deployments 
+                                kubectl apply -f deployments/namespace.yaml
+                                kubectl apply -f deployments/ 
                             '''
                         
                 }
