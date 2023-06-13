@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: fast-api
+metadata:
+  name: jenkins
