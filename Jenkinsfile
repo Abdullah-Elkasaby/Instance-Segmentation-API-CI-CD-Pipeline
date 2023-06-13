@@ -7,7 +7,7 @@ pipeline {
                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                        sh """
                             docker login -u ${USERNAME} -p ${PASSWORD}
-                            docker build -t abdullahelkasaby/fast-api:v${BUILD_NUMBER} .
+                            docker build -t abdullahelkasaby/fast-api:v${BUILD_NUMBER} . --network=host
                             docker push abdullahelkasaby/fast-api:v${BUILD_NUMBER}
                             echo ${BUILD_NUMBER} > ../build_num.txt
                        """
