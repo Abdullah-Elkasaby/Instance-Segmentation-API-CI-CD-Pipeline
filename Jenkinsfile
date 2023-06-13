@@ -18,7 +18,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                     
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build_num.txt)
                                 mv deployments/api-deploy.yaml deployments/api-deploy.yaml.tmp
@@ -27,7 +27,7 @@ pipeline {
                                 kubectl apply -f deployments/namespace.yaml
                                 kubectl apply -f deployments/ 
                             '''
-                        
+                    }    
                 }
             }
         }
