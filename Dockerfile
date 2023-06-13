@@ -20,4 +20,4 @@ COPY . /app
 RUN pip install --no-cache /wheels/*
 
 EXPOSE 8000
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "80", "--workers", "2"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port"]

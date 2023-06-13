@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-api
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: fast-api
+  template:
+    metadata:
+      labels:
+        app: fast-api
+    spec:
+      containers:
+      - name: fast-api
+        image: abdullahelkasaby/fast-api:v${BUILD_NUMBER}
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "990Mi"
+            cpu: "1000m"
+        ports:
+          - containerPort: 80
+    

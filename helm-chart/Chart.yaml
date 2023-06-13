@@ -1,8 +1,0 @@
-apiVersion: v2
-home: https://github.com/Abdullah-Elkasaby/Automated-Instance-Segmentation-model-API-Deployment-with-CI-CD
-maintainers:
-- email: abdullah.qasaby@gmail.com
-  name: timja
-name: jenkins
-version: 4.3.24
-appVersion: "1.1"
