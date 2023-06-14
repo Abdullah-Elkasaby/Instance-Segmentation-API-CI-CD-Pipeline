@@ -14,8 +14,7 @@ service:
   name: fast-api-service
   port: 80
   targetPort: 80
-  nodePort: 30100
-  type: NodePort
+  type: LoadBalancer
 
 # test-env-values
 testEnv: 
