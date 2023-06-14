@@ -26,6 +26,8 @@ pipeline {
                                 else
                                     helm upgrade model-api helm-chart/ --set image.tag=v${BUILD_NUMBER}
                                 fi
+
+                                kubectl get svc
                             '''
                         }
                 }
