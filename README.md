@@ -16,23 +16,10 @@ The project consists of the following components
 
 - Async: The project utilizes async functionality, which enables asynchronous execution of tasks. This improves the performance of the API by allowing multiple requests to be processed concurrently.
 
-## API Endpoint
-
-The project exposes a single endpoint for performing instance segmentation on images. The endpoint accepts HTTP POST requests with an image file or image URL as input.
-
-### Endpoint URL
-
-The base URL for the API endpoint is: `http://127.0.0.1:8000/docs` ,however you can change that as you see fit.
-
-### Request Format
-
-The API endpoint expects a JSON payload in the body of the POST request. The payload should include the following fields:
-
-- `"image"` (required): The input image to be segmented. It can be either an image file (JPEG, PNG, etc).
-e confidence scores associated with each instance segmentation.
 
 
-## Setup and Deployment
+
+## Setup using virtual environement
 
 To set up and deploy the Instance Segmentation API project, follow these steps:
 
@@ -47,12 +34,37 @@ To set up and deploy the Instance Segmentation API project, follow these steps:
     * `pip install -r requirements.txt`
 
 4. Run the FastAPI server using Uvicorn after opening the directory containgy the `server.py` file 
-    * `uvicorn server:app  --host 0.0.0.0 --port 8000`
+    * `uvicorn server:app`
 
 <br>
 
+## Setup using Docker
+
+
+Docker must be installed on your system
+
+1. Create the image using
+    * `Docker build . --tag fast-api-model`
+
+2. Run the container mapped to port 8080 on Host using 
+    *  `Docker run --name api -p 8080:80 fast-api-model`
+
+2. Access the api on
+    * `http://localhost:8080`
+
+
+
+### Request Format
+
+The API endpoint expects a JSON payload in the body of the POST request. The payload should include the following fields:
+
+- `"upload/img"` (required): The input image to be segmented. It supports formats (JPEG, PNG).
+
+
 ## Usage Example 
-![image](dependencies/usage.png)
+![image](dependencies/app-test.png)
+![image](dependencies/sample.jpg)
+
 
 ## Conclusion
 
