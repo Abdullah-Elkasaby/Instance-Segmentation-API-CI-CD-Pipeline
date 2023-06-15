@@ -19,7 +19,7 @@ service:
 # test-env-values
 testEnv: 
   envName: test
-  replicasCount: 1
+  replicasCount: 3
 
 # prod-env-values 
 preprodEnv: 
