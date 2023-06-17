@@ -11,10 +11,18 @@ spec:
     metadata:
       labels:
         app: {{ .Values.app.name }}
+  
     spec:
       containers:
       - name: {{ .Values.image.name }}
         image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
         ports:
           - containerPort: {{ .Values.container.port }}
-    
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "980Mi"
+            cpu: "1000m"
+      
